@@ -1,13 +1,11 @@
-import { useStore } from "../store/store"
+import { useStore } from "../store/store";
 
 const Dashboard = () => {
-    const [auth] = useStore((state) => [state.auth])
+  const [auth] = useStore((state) => [state.user]);
 
-    console.log(auth)
+  console.log(auth);
 
-    return <div>
-        Dashboard
-    </div>
-}
+  return <div>Dashboard</div>;
+};
 
-export default Dashboard
+export default Dashboard;

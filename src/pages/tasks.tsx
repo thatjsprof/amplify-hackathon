@@ -5,20 +5,24 @@ import {
   SelectField,
   useTheme,
 } from "@aws-amplify/ui-react";
-import { useState } from "react";
-import TaskItem, { ITask } from "src/components/tasks/taskItem";
+import { useEffect } from "react";
+import TaskItem from "src/components/tasks/taskItem";
+import { useStore } from "src/store/store";
 import { CreateTask } from "src/ui-components";
-
-const initialTasks: ITask[] = [
-  {
-    id: 1,
-    title: "Take a walk around the park",
-  },
-];
 
 const Tasks = () => {
   const theme = useTheme();
-  const [tasks, setTasks] = useState<ITask[]>(initialTasks);
+  const [id] = useStore((state) => [state.user.user?.id]);
+  const [tasks, fetchTasks] = useStore((state) => [
+    state.task.tasks,
+    state.task.fetchTasks,
+  ]);
+
+  useEffect(() => {
+    if (id) {
+      fetchTasks(id);
+    }
+  }, [id]);
 
   return (
     <div>

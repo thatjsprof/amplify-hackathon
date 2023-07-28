@@ -1,11 +1,6 @@
-import { Text, Card, Button, Icon } from "@aws-amplify/ui-react";
+import { Text, Card, Button } from "@aws-amplify/ui-react";
 import Check from "src/assets/svgs/check";
-
-export interface ITask {
-  title: string;
-  id: string | number;
-  description?: string;
-}
+import { ITask } from "src/interfaces/tasks";
 
 const TaskItem = ({ title, description }: ITask) => {
   return (

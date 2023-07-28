@@ -1,3 +1,4 @@
+import { ITask } from "./tasks";
 import { IUser } from "./user";
 
 export type ISet = (
@@ -8,11 +9,18 @@ export type ISet = (
   replace?: boolean | undefined
 ) => void;
 
-export interface IAuthStore {
+export interface IUserStore {
   user: null | IUser;
+  initialized: boolean;
   updateUser: (userInfo: IUser) => unknown;
 }
 
+export interface ITaskStore {
+  tasks: ITask[];
+  fetchTasks: (userId: string) => Promise<void>;
+}
+
 export interface IStore {
-  auth: IAuthStore;
+  user: IUserStore;
+  task: ITaskStore;
 }
