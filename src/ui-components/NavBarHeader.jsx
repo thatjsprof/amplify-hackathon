@@ -7,7 +7,7 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Flex, Icon, Image, Text, View } from "@aws-amplify/ui-react";
+import { Button, Flex, Icon, Text, View } from "@aws-amplify/ui-react";
 export default function NavBarHeader(props) {
   const { overrides, ...rest } = props;
   return (
@@ -80,7 +80,7 @@ export default function NavBarHeader(props) {
         basis="0"
         position="relative"
         padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Frame 32129767076")}
+        {...getOverrideProps(overrides, "Frame 321")}
       >
         <Text
           fontFamily="Inter"
@@ -146,40 +146,16 @@ export default function NavBarHeader(props) {
           {...getOverrideProps(overrides, "Schedule")}
         ></Text>
       </Flex>
-      <Flex
-        gap="32px"
-        direction="row"
+      <Button
         width="unset"
         height="unset"
-        justifyContent="flex-end"
-        alignItems="center"
-        grow="1"
-        shrink="1"
-        basis="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Frame 32129767081")}
-      >
-        <View
-          width="24px"
-          height="24px"
-          {...getOverrideProps(overrides, "MyIcon")}
-        ></View>
-        <Image
-          width="45px"
-          height="45px"
-          display="block"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
-          shrink="0"
-          position="relative"
-          borderRadius="160px"
-          padding="0px 0px 0px 0px"
-          objectFit="cover"
-          {...getOverrideProps(overrides, "image")}
-        ></Image>
-      </Flex>
+        shrink="0"
+        size="small"
+        isDisabled={false}
+        variation="default"
+        children="Log Out"
+        {...getOverrideProps(overrides, "Button")}
+      ></Button>
     </Flex>
   );
 }

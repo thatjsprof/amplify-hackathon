@@ -15,7 +15,7 @@ import {
   TextField,
 } from "@aws-amplify/ui-react";
 export default function CreateTask(props) {
-  const { overrides, ...rest } = props;
+  const { createTask, overrides, ...rest } = props;
   return (
     <Flex
       gap="26px"

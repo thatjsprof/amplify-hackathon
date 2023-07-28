@@ -2,6 +2,7 @@ import {
   Card,
   Grid,
   Heading,
+  Loader,
   SelectField,
   useTheme,
 } from "@aws-amplify/ui-react";
@@ -29,11 +30,15 @@ const Tasks = () => {
   const theme = useTheme();
 
   const [id] = useStore((state) => [state.user.user?.id]);
-  const [tasks, fetchTasks, createTask] = useStore((state) => [
-    state.task.tasks,
-    state.task.fetchTasks,
-    state.task.createTask,
-  ]);
+  const [tasks, loading, fetchTasks, createTask, editTask] = useStore(
+    (state) => [
+      state.task.tasks,
+      state.task.loading,
+      state.task.fetchTasks,
+      state.task.createTask,
+      state.task.updateTask,
+    ]
+  );
 
   const handleSubmit = (values: ICreateTask, resetForm: () => void) => {
     const updatedTask = {
@@ -41,7 +46,7 @@ const Tasks = () => {
       userId: id,
     };
 
-    createTask(updatedTask, id as string);
+    createTask(updatedTask);
     resetForm();
   };
 
@@ -128,9 +133,17 @@ const Tasks = () => {
               <option value="today">All Time</option>
             </SelectField>
           </div>
-          {tasks.map((task) => {
-            return <TaskItem key={task.id} {...task} />;
-          })}
+          {loading ? (
+            <Loader />
+          ) : (
+            <>
+              {tasks.map((task) => {
+                return (
+                  <TaskItem updateTask={editTask} key={task.id} {...task} />
+                );
+              })}
+            </>
+          )}
         </Card>
       </Grid>
     </div>

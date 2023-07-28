@@ -29,6 +29,7 @@ type Task @model {
       sortKeyFields: ["id"]
       queryField: "tasksByUser"
     )
+  completed: Boolean
   priority: TaskPriority
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!

@@ -14,6 +14,7 @@ export const getUser = /* GraphQL */ `
           title
           description
           userId
+          completed
           priority
           createdAt
           updatedAt
@@ -67,6 +68,7 @@ export const getTask = /* GraphQL */ `
       title
       description
       userId
+      completed
       priority
       createdAt
       updatedAt
@@ -85,6 +87,7 @@ export const listTasks = /* GraphQL */ `
         title
         description
         userId
+        completed
         priority
         createdAt
         updatedAt
@@ -146,6 +149,7 @@ export const tasksByUser = /* GraphQL */ `
         title
         description
         userId
+        completed
         priority
         createdAt
         updatedAt

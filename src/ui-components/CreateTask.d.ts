@@ -16,6 +16,8 @@ export declare type CreateTaskOverridesProps = {
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type CreateTaskProps = React.PropsWithChildren<Partial<FlexProps> & {
+    createTask?: React.ReactNode;
+} & {
     overrides?: CreateTaskOverridesProps | undefined | null;
 }>;
 export default function CreateTask(props: CreateTaskProps): React.ReactElement;

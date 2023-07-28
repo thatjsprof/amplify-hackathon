@@ -1,19 +1,26 @@
 import { API } from "aws-amplify";
-import { CreateTaskInput, TasksByUserQuery } from "src/API";
-import { createTask } from "src/graphql/mutations";
+import { CreateTaskInput, TasksByUserQuery, UpdateTaskInput } from "src/API";
+import { createTask, updateTask } from "src/graphql/mutations";
 import { tasksByUser } from "src/graphql/queries";
 import { GraphQLResult } from "@aws-amplify/api";
 import { ITask } from "src/interfaces/tasks";
 
 export const addTask = async (task: CreateTaskInput) => {
-  const response = await API.graphql({
+  await API.graphql({
     query: createTask,
     variables: {
       input: task,
     },
   });
+};
 
-  console.log(response);
+export const editTask = async (task: UpdateTaskInput) => {
+  await API.graphql({
+    query: updateTask,
+    variables: {
+      input: task,
+    },
+  });
 };
 
 export const fetchTasks = async (id: string) => {

@@ -6,19 +6,17 @@
 
 import * as React from "react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { FlexProps, IconProps, ImageProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, FlexProps, IconProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type NavBarHeaderOverridesProps = {
     NavBarHeader?: PrimitiveOverrideProps<FlexProps>;
     LogoWithText?: PrimitiveOverrideProps<ViewProps>;
     Union?: PrimitiveOverrideProps<IconProps>;
-    "Frame 32129767076"?: PrimitiveOverrideProps<FlexProps>;
+    "Frame 321"?: PrimitiveOverrideProps<FlexProps>;
     Dashboard?: PrimitiveOverrideProps<TextProps>;
     Tasks?: PrimitiveOverrideProps<TextProps>;
     Schedule?: PrimitiveOverrideProps<TextProps>;
-    "Frame 32129767081"?: PrimitiveOverrideProps<FlexProps>;
-    MyIcon?: PrimitiveOverrideProps<ViewProps>;
-    image?: PrimitiveOverrideProps<ImageProps>;
+    Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type NavBarHeaderProps = React.PropsWithChildren<Partial<FlexProps> & {
     overrides?: NavBarHeaderOverridesProps | undefined | null;

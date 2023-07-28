@@ -8,3 +8,7 @@ export const getCurrentAuthenticatedUser = async () => {
     console.log(err);
   }
 };
+
+export const logout = async () => {
+  await Auth.signOut();
+};

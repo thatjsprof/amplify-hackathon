@@ -14,6 +14,7 @@ export const onCreateUser = /* GraphQL */ `
           title
           description
           userId
+          completed
           priority
           createdAt
           updatedAt
@@ -48,6 +49,7 @@ export const onUpdateUser = /* GraphQL */ `
           title
           description
           userId
+          completed
           priority
           createdAt
           updatedAt
@@ -82,6 +84,7 @@ export const onDeleteUser = /* GraphQL */ `
           title
           description
           userId
+          completed
           priority
           createdAt
           updatedAt
@@ -111,6 +114,7 @@ export const onCreateTask = /* GraphQL */ `
       title
       description
       userId
+      completed
       priority
       createdAt
       updatedAt
@@ -124,6 +128,7 @@ export const onUpdateTask = /* GraphQL */ `
       title
       description
       userId
+      completed
       priority
       createdAt
       updatedAt
@@ -137,6 +142,7 @@ export const onDeleteTask = /* GraphQL */ `
       title
       description
       userId
+      completed
       priority
       createdAt
       updatedAt
