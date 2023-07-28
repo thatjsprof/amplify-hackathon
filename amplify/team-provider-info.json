@@ -10,6 +10,14 @@
       "StackName": "amplify-amplifyhackathon-dev-181833",
       "StackId": "arn:aws:cloudformation:us-east-1:796325119405:stack/amplify-amplifyhackathon-dev-181833/a1422ed0-2ca1-11ee-b7a6-0a87bbb0c017",
       "AmplifyAppId": "dhnlob3crv62l"
+    },
+    "categories": {
+      "auth": {
+        "amplifyhackathon18191973": {}
+      },
+      "api": {
+        "amplifyhackathon": {}
+      }
     }
   }
 }
