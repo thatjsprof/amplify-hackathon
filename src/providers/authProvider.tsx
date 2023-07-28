@@ -10,6 +10,7 @@ const AuthProvider = (props: { children: React.ReactElement }) => {
   React.useEffect(() => {
     const initialize = async () => {
       const userInfo = await getCurrentAuthenticatedUser();
+
       updateUser({
         email: userInfo.email,
         id: userInfo.sub,
