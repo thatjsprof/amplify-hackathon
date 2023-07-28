@@ -3,10 +3,15 @@ import { userStore } from "./userStore";
 import { IStore } from "../interfaces/store";
 import { tasksStore } from "./tasksStore";
 
-const useStore = create<IStore>()((set) => {
+const useStore = create<IStore>()((set, get) => {
+  const toPass = {
+    get,
+    set,
+  };
+
   return {
-    user: userStore(set),
-    task: tasksStore(set),
+    user: userStore(toPass),
+    task: tasksStore(toPass),
   };
 });
 

@@ -1,8 +1,8 @@
 import { updateState } from "src/helpers/store";
-import { ISet, IUserStore } from "../interfaces/store";
+import { IStoreParam, IUserStore } from "../interfaces/store";
 import { IUser } from "../interfaces/user";
 
-export const userStore = (set: ISet) => {
+export const userStore = ({ get, set }: IStoreParam) => {
   return {
     user: null,
     initialized: false,

@@ -7,16 +7,57 @@ import {
 } from "@aws-amplify/ui-react";
 import { useEffect } from "react";
 import TaskItem from "src/components/tasks/taskItem";
+import useValidation from "src/helpers/form";
+import { ICreateTask } from "src/interfaces/tasks";
 import { useStore } from "src/store/store";
 import { CreateTask } from "src/ui-components";
 
+const errorStyles = (error: boolean) => {
+  const theme = useTheme();
+
+  return {
+    borderColor: error ? theme.tokens.colors.red[40].value : "",
+  };
+};
+
+const initialValues = {
+  title: "",
+  description: "",
+};
+
 const Tasks = () => {
   const theme = useTheme();
+
   const [id] = useStore((state) => [state.user.user?.id]);
-  const [tasks, fetchTasks] = useStore((state) => [
+  const [tasks, fetchTasks, createTask] = useStore((state) => [
     state.task.tasks,
     state.task.fetchTasks,
+    state.task.createTask,
   ]);
+
+  const handleSubmit = (values: ICreateTask, resetForm: () => void) => {
+    const updatedTask = {
+      ...values,
+      userId: id,
+    };
+
+    createTask(updatedTask, id as string);
+    resetForm();
+  };
+
+  const {
+    values,
+    errors,
+    resetForm,
+    handleBlur,
+    handleChange,
+    handleSubmit: onSubmit,
+  } = useValidation({
+    initialValues,
+    onSubmit: (values: ICreateTask) => {
+      handleSubmit(values, resetForm);
+    },
+  });
 
   useEffect(() => {
     if (id) {
@@ -38,18 +79,39 @@ const Tasks = () => {
         }}
       >
         <Card columnStart="1" columnEnd="auto">
-          <CreateTask
-            overrides={{
-              Button: {
-                style: {
-                  border: "none",
-                  paddingTop: "1rem",
-                  paddingBottom: "1rem",
-                  color: theme.tokens.colors.white.value,
+          <form noValidate onSubmit={onSubmit}>
+            <CreateTask
+              overrides={{
+                Button: {
+                  type: "submit",
+                  style: {
+                    border: "none",
+                    paddingTop: "1rem",
+                    paddingBottom: "1rem",
+                    color: theme.tokens.colors.white.value,
+                  },
                 },
-              },
-            }}
-          />
+                TextField: {
+                  name: "title",
+                  onBlur: handleBlur,
+                  value: values.title,
+                  onChange: handleChange,
+                  style: {
+                    ...errorStyles(errors.title),
+                  },
+                },
+                TextAreaField: {
+                  onBlur: handleBlur,
+                  name: "description",
+                  onChange: handleChange,
+                  value: values.description,
+                  style: {
+                    ...errorStyles(errors.description),
+                  },
+                },
+              }}
+            />
+          </form>
         </Card>
         <Card columnStart="2" columnEnd="-1">
           <div

@@ -10,6 +10,7 @@ const TaskItem = ({ title, description }: ITask) => {
         padding: "2rem",
         borderRadius: "5px",
         alignItems: "center",
+        marginBottom: ".5rem",
         justifyContent: "space-between",
         backgroundColor: "rgb(250, 250, 250)",
       }}

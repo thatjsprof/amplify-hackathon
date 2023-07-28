@@ -1,4 +1,4 @@
-import { ITask } from "./tasks";
+import { ICreateTask, ITask } from "./tasks";
 import { IUser } from "./user";
 
 export type ISet = (
@@ -9,6 +9,13 @@ export type ISet = (
   replace?: boolean | undefined
 ) => void;
 
+export type IGet = () => IStore;
+
+export type IStoreParam = {
+  set: ISet;
+  get: IGet;
+};
+
 export interface IUserStore {
   user: null | IUser;
   initialized: boolean;
@@ -17,6 +24,7 @@ export interface IUserStore {
 
 export interface ITaskStore {
   tasks: ITask[];
+  createTask: (task: ICreateTask, userId: string) => void;
   fetchTasks: (userId: string) => Promise<void>;
 }
 

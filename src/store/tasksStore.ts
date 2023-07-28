@@ -1,10 +1,15 @@
-import { fetchTasks } from "src/services/tasks";
-import { ISet, ITaskStore } from "../interfaces/store";
+import { addTask, fetchTasks } from "src/services/tasks";
+import { IStoreParam, ITaskStore } from "../interfaces/store";
 import { updateState } from "src/helpers/store";
+import { ICreateTask } from "src/interfaces/tasks";
 
-export const tasksStore = (set: ISet) => {
+export const tasksStore = ({ set, get }: IStoreParam) => {
   return {
     tasks: [],
+    createTask: async (task: ICreateTask, userId: string) => {
+      await addTask(task);
+      get().task.fetchTasks(userId);
+    },
     fetchTasks: async (userId: string) => {
       const response = await fetchTasks(userId);
 
