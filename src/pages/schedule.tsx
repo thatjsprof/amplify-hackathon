@@ -60,7 +60,7 @@ const Schedule = () => {
         )}
       </Card>
       <Card columnStart="2" columnEnd="-1">
-        <EventList />
+        {user?.googleCalendar?.connected && <EventList />}
       </Card>
     </div>
   );
