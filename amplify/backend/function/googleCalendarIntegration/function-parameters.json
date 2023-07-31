@@ -1,0 +1,21 @@
+{
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "googleClient",
+      "environmentVariableName": "GOOGLE_CLIENT"
+    },
+    {
+      "cloudFormationParameterName": "googleSecret",
+      "environmentVariableName": "GOOGLE_SECRET"
+    }
+  ],
+  "permissions": {
+    "storage": {
+      "User:@model(appsync)": [
+        "read",
+        "update"
+      ]
+    }
+  }
+}

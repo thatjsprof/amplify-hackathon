@@ -1,0 +1,14 @@
+const SUCCESS_CODES = {
+  OK: 200,
+  PASS: 201,
+};
+
+const ERROR_CODES = {
+  UNAUTHENTICATED: 401,
+  FAILED_VALIDATION: 400,
+};
+
+module.exports = {
+  SUCCESS_CODES,
+  ERROR_CODES,
+};

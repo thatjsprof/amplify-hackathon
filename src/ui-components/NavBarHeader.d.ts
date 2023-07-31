@@ -13,7 +13,6 @@ export declare type NavBarHeaderOverridesProps = {
     LogoWithText?: PrimitiveOverrideProps<ViewProps>;
     Union?: PrimitiveOverrideProps<IconProps>;
     "Frame 321"?: PrimitiveOverrideProps<FlexProps>;
-    Dashboard?: PrimitiveOverrideProps<TextProps>;
     Tasks?: PrimitiveOverrideProps<TextProps>;
     Schedule?: PrimitiveOverrideProps<TextProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;

@@ -1,22 +1,17 @@
 import { Text, Card, Button } from "@aws-amplify/ui-react";
+import Bin from "src/assets/svgs/bin";
 import Check from "src/assets/svgs/check";
 import { ITask, IUpdateTask } from "src/interfaces/tasks";
 
-const TaskItem = ({
-  id,
-  title,
-  completed,
-  description,
-  updateTask,
-}: ITask & { updateTask: (task: IUpdateTask) => Promise<void> }) => {
-  const handleUpdate = async () => {
-    await updateTask({
-      title,
-      id: id as string,
-      completed: !completed,
-      description: description as string,
-    });
-  };
+const TaskItem = (
+  task: ITask & {
+    handleDelete: (id: string) => Promise<void>;
+    handleUpdate: (task: IUpdateTask) => Promise<void>;
+  }
+) => {
+  const { handleUpdate, handleDelete, ...extraTask } = task;
+
+  const { id, title, description } = extraTask;
 
   return (
     <Card
@@ -25,7 +20,7 @@ const TaskItem = ({
         padding: "2rem",
         borderRadius: "5px",
         alignItems: "center",
-        marginBottom: ".5rem",
+        marginBottom: "1rem",
         justifyContent: "space-between",
         backgroundColor: "rgb(250, 250, 250)",
       }}
@@ -34,9 +29,18 @@ const TaskItem = ({
         <Text>{title}</Text>
         <Text>{description}</Text>
       </div>
-      <div>
-        <Button onClick={handleUpdate}>
+      <div
+        style={{
+          gap: 5,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Button onClick={() => handleUpdate(extraTask as IUpdateTask)}>
           <Check />
+        </Button>
+        <Button onClick={() => handleDelete(id as string)}>
+          <Bin />
         </Button>
       </div>
     </Card>

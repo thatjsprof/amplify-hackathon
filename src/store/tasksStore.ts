@@ -1,7 +1,6 @@
-import { addTask, editTask, fetchTasks } from "src/services/tasks";
-import { IStoreParam, ITaskStore } from "../interfaces/store";
+import { fetchTasks } from "src/services/tasks";
+import { ITodoFilter, IStoreParam, ITaskStore } from "../interfaces/store";
 import { updateState } from "src/helpers/store";
-import { ICreateTask, IUpdateTask } from "src/interfaces/tasks";
 
 export const tasksStore = ({ set, get }: IStoreParam) => {
   return {
@@ -14,17 +13,9 @@ export const tasksStore = ({ set, get }: IStoreParam) => {
         });
       });
     },
-    createTask: async (task: ICreateTask) => {
-      await addTask(task);
-      get().task.fetchTasks(task.userId as string);
-    },
-    updateTask: async (task: IUpdateTask) => {
-      await editTask(task);
-      get().task.fetchTasks(task.userId as string);
-    },
-    fetchTasks: async (userId: string) => {
+    fetchTasks: async (userId: string, filter?: ITodoFilter) => {
       get().task.setLoading(true);
-      const response = await fetchTasks(userId);
+      const response = await fetchTasks(userId, filter);
       get().task.setLoading(false);
 
       set((state) => {

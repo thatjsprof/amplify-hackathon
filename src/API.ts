@@ -4,10 +4,25 @@
 
 export type CreateUserInput = {
   id?: string | null,
-  name: string,
+  name?: string | null,
   email: string,
+  googleCalendar?: CalendarInfoInput | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+};
+
+export type CalendarInfoInput = {
+  idToken?: string | null,
+  accessToken?: string | null,
+  refreshToken?: string | null,
+  connected?: boolean | null,
+  events?: Array< IEventInput | null > | null,
+};
+
+export type IEventInput = {
+  id?: string | null,
+  eventLink?: string | null,
+  linkedToTask?: boolean | null,
 };
 
 export type ModelUserConditionInput = {
@@ -63,12 +78,29 @@ export type ModelSizeInput = {
 export type User = {
   __typename: "User",
   id: string,
-  name: string,
+  name?: string | null,
   email: string,
+  googleCalendar?: CalendarInfo | null,
   tasks?: ModelTaskConnection | null,
   notes?: ModelNoteConnection | null,
   createdAt: string,
   updatedAt: string,
+};
+
+export type CalendarInfo = {
+  __typename: "CalendarInfo",
+  idToken?: string | null,
+  accessToken?: string | null,
+  refreshToken?: string | null,
+  connected?: boolean | null,
+  events?:  Array<IEvent | null > | null,
+};
+
+export type IEvent = {
+  __typename: "IEvent",
+  id?: string | null,
+  eventLink?: string | null,
+  linkedToTask?: boolean | null,
 };
 
 export type ModelTaskConnection = {
@@ -116,6 +148,7 @@ export type UpdateUserInput = {
   id: string,
   name?: string | null,
   email?: string | null,
+  googleCalendar?: CalendarInfoInput | null,
   createdAt?: string | null,
   updatedAt?: string | null,
 };
@@ -223,6 +256,14 @@ export type UpdateNoteInput = {
 export type DeleteNoteInput = {
   id: string,
 };
+
+export enum EventTypes {
+  generateTokens = "generateTokens",
+  getFreeTime = "getFreeTime",
+  createEvent = "createEvent",
+  getEvents = "getEvents",
+}
+
 
 export type ModelUserFilterInput = {
   id?: ModelIDInput | null,
@@ -361,8 +402,21 @@ export type CreateUserMutation = {
   createUser?:  {
     __typename: "User",
     id: string,
-    name: string,
+    name?: string | null,
     email: string,
+    googleCalendar?:  {
+      __typename: "CalendarInfo",
+      idToken?: string | null,
+      accessToken?: string | null,
+      refreshToken?: string | null,
+      connected?: boolean | null,
+      events?:  Array< {
+        __typename: "IEvent",
+        id?: string | null,
+        eventLink?: string | null,
+        linkedToTask?: boolean | null,
+      } | null > | null,
+    } | null,
     tasks?:  {
       __typename: "ModelTaskConnection",
       items:  Array< {
@@ -405,8 +459,21 @@ export type UpdateUserMutation = {
   updateUser?:  {
     __typename: "User",
     id: string,
-    name: string,
+    name?: string | null,
     email: string,
+    googleCalendar?:  {
+      __typename: "CalendarInfo",
+      idToken?: string | null,
+      accessToken?: string | null,
+      refreshToken?: string | null,
+      connected?: boolean | null,
+      events?:  Array< {
+        __typename: "IEvent",
+        id?: string | null,
+        eventLink?: string | null,
+        linkedToTask?: boolean | null,
+      } | null > | null,
+    } | null,
     tasks?:  {
       __typename: "ModelTaskConnection",
       items:  Array< {
@@ -449,8 +516,21 @@ export type DeleteUserMutation = {
   deleteUser?:  {
     __typename: "User",
     id: string,
-    name: string,
+    name?: string | null,
     email: string,
+    googleCalendar?:  {
+      __typename: "CalendarInfo",
+      idToken?: string | null,
+      accessToken?: string | null,
+      refreshToken?: string | null,
+      connected?: boolean | null,
+      events?:  Array< {
+        __typename: "IEvent",
+        id?: string | null,
+        eventLink?: string | null,
+        linkedToTask?: boolean | null,
+      } | null > | null,
+    } | null,
     tasks?:  {
       __typename: "ModelTaskConnection",
       items:  Array< {
@@ -592,6 +672,15 @@ export type DeleteNoteMutation = {
   } | null,
 };
 
+export type GoogleCalendarFunctionQueryVariables = {
+  eventType?: EventTypes | null,
+  eventPayload?: string | null,
+};
+
+export type GoogleCalendarFunctionQuery = {
+  googleCalendarFunction?: string | null,
+};
+
 export type GetUserQueryVariables = {
   id: string,
 };
@@ -600,8 +689,21 @@ export type GetUserQuery = {
   getUser?:  {
     __typename: "User",
     id: string,
-    name: string,
+    name?: string | null,
     email: string,
+    googleCalendar?:  {
+      __typename: "CalendarInfo",
+      idToken?: string | null,
+      accessToken?: string | null,
+      refreshToken?: string | null,
+      connected?: boolean | null,
+      events?:  Array< {
+        __typename: "IEvent",
+        id?: string | null,
+        eventLink?: string | null,
+        linkedToTask?: boolean | null,
+      } | null > | null,
+    } | null,
     tasks?:  {
       __typename: "ModelTaskConnection",
       items:  Array< {
@@ -647,8 +749,15 @@ export type ListUsersQuery = {
     items:  Array< {
       __typename: "User",
       id: string,
-      name: string,
+      name?: string | null,
       email: string,
+      googleCalendar?:  {
+        __typename: "CalendarInfo",
+        idToken?: string | null,
+        accessToken?: string | null,
+        refreshToken?: string | null,
+        connected?: boolean | null,
+      } | null,
       tasks?:  {
         __typename: "ModelTaskConnection",
         nextToken?: string | null,
@@ -804,8 +913,21 @@ export type OnCreateUserSubscription = {
   onCreateUser?:  {
     __typename: "User",
     id: string,
-    name: string,
+    name?: string | null,
     email: string,
+    googleCalendar?:  {
+      __typename: "CalendarInfo",
+      idToken?: string | null,
+      accessToken?: string | null,
+      refreshToken?: string | null,
+      connected?: boolean | null,
+      events?:  Array< {
+        __typename: "IEvent",
+        id?: string | null,
+        eventLink?: string | null,
+        linkedToTask?: boolean | null,
+      } | null > | null,
+    } | null,
     tasks?:  {
       __typename: "ModelTaskConnection",
       items:  Array< {
@@ -847,8 +969,21 @@ export type OnUpdateUserSubscription = {
   onUpdateUser?:  {
     __typename: "User",
     id: string,
-    name: string,
+    name?: string | null,
     email: string,
+    googleCalendar?:  {
+      __typename: "CalendarInfo",
+      idToken?: string | null,
+      accessToken?: string | null,
+      refreshToken?: string | null,
+      connected?: boolean | null,
+      events?:  Array< {
+        __typename: "IEvent",
+        id?: string | null,
+        eventLink?: string | null,
+        linkedToTask?: boolean | null,
+      } | null > | null,
+    } | null,
     tasks?:  {
       __typename: "ModelTaskConnection",
       items:  Array< {
@@ -890,8 +1025,21 @@ export type OnDeleteUserSubscription = {
   onDeleteUser?:  {
     __typename: "User",
     id: string,
-    name: string,
+    name?: string | null,
     email: string,
+    googleCalendar?:  {
+      __typename: "CalendarInfo",
+      idToken?: string | null,
+      accessToken?: string | null,
+      refreshToken?: string | null,
+      connected?: boolean | null,
+      events?:  Array< {
+        __typename: "IEvent",
+        id?: string | null,
+        eventLink?: string | null,
+        linkedToTask?: boolean | null,
+      } | null > | null,
+    } | null,
     tasks?:  {
       __typename: "ModelTaskConnection",
       items:  Array< {
@@ -1022,6 +1170,25 @@ export type OnDeleteNoteSubscription = {
     title: string,
     userId?: string | null,
     description?: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type GetUserCustomQueryVariables = {
+  id: string,
+};
+
+export type GetUserCustomQuery = {
+  getUser?:  {
+    __typename: "User",
+    id: string,
+    name?: string | null,
+    email: string,
+    googleCalendar?:  {
+      __typename: "CalendarInfo",
+      connected?: boolean | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,

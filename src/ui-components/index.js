@@ -6,4 +6,7 @@
 
 export { default as NavBarHeader } from "./NavBarHeader";
 export { default as CreateTask } from "./CreateTask";
+export { default as Select } from "./Select";
+export { default as Input } from "./Input";
+export { default as Textarea } from "./Textarea";
 export { default as studioTheme } from "./studioTheme";

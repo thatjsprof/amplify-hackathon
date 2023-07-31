@@ -2,12 +2,28 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const googleCalendarFunction = /* GraphQL */ `
+  query GoogleCalendarFunction($eventType: EventTypes, $eventPayload: AWSJSON) {
+    googleCalendarFunction(eventType: $eventType, eventPayload: $eventPayload)
+  }
+`;
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {
       id
       name
       email
+      googleCalendar {
+        idToken
+        accessToken
+        refreshToken
+        connected
+        events {
+          id
+          eventLink
+          linkedToTask
+        }
+      }
       tasks {
         items {
           id
@@ -48,6 +64,12 @@ export const listUsers = /* GraphQL */ `
         id
         name
         email
+        googleCalendar {
+          idToken
+          accessToken
+          refreshToken
+          connected
+        }
         tasks {
           nextToken
         }

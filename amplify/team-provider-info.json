@@ -17,6 +17,18 @@
       },
       "api": {
         "amplifyhackathon": {}
+      },
+      "function": {
+        "googleCalendarIntegration": {
+          "googleClient": "1036868886555-fm31pimk00fb4k0doud0f8q15dofq03j.apps.googleusercontent.com",
+          "googleSecret": "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",
+          "deploymentBucketName": "amplify-amplifyhackathon-dev-181833-deployment",
+          "s3Key": "amplify-builds/googleCalendarIntegration-4c41667735424f463633-build.zip"
+        },
+        "postConfirmation": {
+          "deploymentBucketName": "amplify-amplifyhackathon-dev-181833-deployment",
+          "s3Key": "amplify-builds/postConfirmation-4243437650693542466a-build.zip"
+        }
       }
     }
   }

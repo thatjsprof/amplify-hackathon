@@ -5,12 +5,27 @@ input AMPLIFY {
 } # FOR TESTING ONLY!
 type User @model {
   id: ID!
-  name: String!
+  name: String
   email: String!
+  googleCalendar: CalendarInfo
   tasks: [Task] @hasMany(indexName: "byUserTasks", fields: ["id"])
   notes: [Note] @hasMany(indexName: "byUserNotes", fields: ["id"])
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
+}
+
+type IEvent {
+  id: String
+  eventLink: String
+  linkedToTask: Boolean
+}
+
+type CalendarInfo {
+  idToken: String
+  accessToken: String
+  refreshToken: String
+  connected: Boolean
+  events: [IEvent]
 }
 
 enum TaskPriority {
@@ -47,4 +62,16 @@ type Note @model {
   description: String
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
+}
+
+enum EventTypes {
+  generateTokens
+  getFreeTime
+  createEvent
+  getEvents
+}
+
+type Query {
+  googleCalendarFunction(eventType: EventTypes, eventPayload: AWSJSON): AWSJSON
+    @function(name: "googleCalendarIntegration-${env}")
 }

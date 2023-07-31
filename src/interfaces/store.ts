@@ -1,4 +1,4 @@
-import { ICreateTask, ITask, IUpdateTask } from "./tasks";
+import { ITask } from "./tasks";
 import { IUser } from "./user";
 
 export type ISet = (
@@ -17,8 +17,10 @@ export type IStoreParam = {
 };
 
 export interface IUserStore {
+  loading: boolean;
   user: null | IUser;
   initialized: boolean;
+  setLoading: (loading: boolean) => void;
   updateUser: (userInfo: IUser) => unknown;
 }
 
@@ -26,12 +28,14 @@ export interface ITaskStore {
   tasks: ITask[];
   loading: boolean;
   setLoading: (loading: boolean) => void;
-  createTask: (task: ICreateTask) => void;
-  updateTask: (task: IUpdateTask) => Promise<void>;
-  fetchTasks: (userId: string) => Promise<void>;
+  fetchTasks: (userId: string, filter?: ITodoFilter) => Promise<void>;
 }
 
 export interface IStore {
   user: IUserStore;
   task: ITaskStore;
+}
+
+export interface ITodoFilter {
+  completed: boolean;
 }

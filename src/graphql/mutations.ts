@@ -11,6 +11,17 @@ export const createUser = /* GraphQL */ `
       id
       name
       email
+      googleCalendar {
+        idToken
+        accessToken
+        refreshToken
+        connected
+        events {
+          id
+          eventLink
+          linkedToTask
+        }
+      }
       tasks {
         items {
           id
@@ -49,6 +60,17 @@ export const updateUser = /* GraphQL */ `
       id
       name
       email
+      googleCalendar {
+        idToken
+        accessToken
+        refreshToken
+        connected
+        events {
+          id
+          eventLink
+          linkedToTask
+        }
+      }
       tasks {
         items {
           id
@@ -87,6 +109,17 @@ export const deleteUser = /* GraphQL */ `
       id
       name
       email
+      googleCalendar {
+        idToken
+        accessToken
+        refreshToken
+        connected
+        events {
+          id
+          eventLink
+          linkedToTask
+        }
+      }
       tasks {
         items {
           id

@@ -44,5 +44,85 @@
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
     }
+  },
+  "function": {
+    "googleCalendarIntegration": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput"
+          ],
+          "category": "api",
+          "resourceName": "amplifyhackathon"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "postConfirmation": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput"
+          ],
+          "category": "api",
+          "resourceName": "amplifyhackathon"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_googleCalendarIntegration_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "googleCalendarIntegration"
+        }
+      ]
+    },
+    "AMPLIFY_function_googleCalendarIntegration_googleClient": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "googleCalendarIntegration"
+        }
+      ]
+    },
+    "AMPLIFY_function_googleCalendarIntegration_googleSecret": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "googleCalendarIntegration"
+        }
+      ]
+    },
+    "AMPLIFY_function_googleCalendarIntegration_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "googleCalendarIntegration"
+        }
+      ]
+    },
+    "AMPLIFY_function_postConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "postConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_postConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "postConfirmation"
+        }
+      ]
+    }
   }
 }

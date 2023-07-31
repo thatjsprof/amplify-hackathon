@@ -1,12 +1,17 @@
 import { API } from "aws-amplify";
 import { GetUserQuery } from "src/API";
-import { getUser } from "src/graphql/queries";
+import { GraphQLResult } from "@aws-amplify/api";
+import { getUserCustom } from "src/graphql/user";
 
 export const getUserInfo = async (id: string) => {
-  const response = (await API.graphql({
-    query: getUser,
-    variables: { id },
-  })) as GetUserQuery;
+  try {
+    const response = (await API.graphql({
+      query: getUserCustom,
+      variables: { id },
+    })) as GraphQLResult<GetUserQuery>;
 
-  return response.getUser;
+    return response.data?.getUser;
+  } catch (err) {
+    console.log(err);
+  }
 };

@@ -8,6 +8,10 @@ const routes = [
     element: <Dashboard />,
   },
   {
+    path: "",
+    element: <Tasks />,
+  },
+  {
     path: "tasks",
     element: <Tasks />,
   },

@@ -9,10 +9,12 @@ const useStore = create<IStore>()((set, get) => {
     set,
   };
 
-  return {
+  const state = {
     user: userStore(toPass),
     task: tasksStore(toPass),
   };
+
+  return state;
 });
 
 export { useStore };

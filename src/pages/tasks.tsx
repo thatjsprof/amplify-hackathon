@@ -2,14 +2,15 @@ import {
   Card,
   Grid,
   Heading,
-  Loader,
   SelectField,
+  TabItem,
+  Tabs,
   useTheme,
 } from "@aws-amplify/ui-react";
-import { useEffect } from "react";
-import TaskItem from "src/components/tasks/taskItem";
+import TaskList from "src/components/tasks/taskList";
 import useValidation from "src/helpers/form";
 import { ICreateTask } from "src/interfaces/tasks";
+import { addTask } from "src/services/tasks";
 import { useStore } from "src/store/store";
 import { CreateTask } from "src/ui-components";
 
@@ -30,23 +31,21 @@ const Tasks = () => {
   const theme = useTheme();
 
   const [id] = useStore((state) => [state.user.user?.id]);
-  const [tasks, loading, fetchTasks, createTask, editTask] = useStore(
-    (state) => [
-      state.task.tasks,
-      state.task.loading,
-      state.task.fetchTasks,
-      state.task.createTask,
-      state.task.updateTask,
-    ]
-  );
+  const [fetchTasks] = useStore((state) => [state.task.fetchTasks]);
 
-  const handleSubmit = (values: ICreateTask, resetForm: () => void) => {
+  const handleSubmit = async (values: ICreateTask, resetForm: () => void) => {
+    const userId = id as string;
+
     const updatedTask = {
       ...values,
-      userId: id,
+      userId,
+      completed: false,
     };
 
-    createTask(updatedTask);
+    await addTask(updatedTask);
+    await fetchTasks(userId, {
+      completed: false,
+    });
     resetForm();
   };
 
@@ -64,12 +63,6 @@ const Tasks = () => {
     },
   });
 
-  useEffect(() => {
-    if (id) {
-      fetchTasks(id);
-    }
-  }, [id]);
-
   return (
     <div>
       <Grid
@@ -78,9 +71,7 @@ const Tasks = () => {
         templateColumns="1fr 1fr 1fr"
         templateRows="1fr 3fr 1fr"
         style={{
-          maxWidth: "100rem",
           margin: "0 auto",
-          marginTop: "3rem",
         }}
       >
         <Card columnStart="1" columnEnd="auto">
@@ -122,7 +113,7 @@ const Tasks = () => {
           <div
             style={{
               display: "flex",
-              alignItems: "center",
+              alignItems: "start",
               marginBottom: "2rem",
               justifyContent: "space-between",
             }}
@@ -133,17 +124,14 @@ const Tasks = () => {
               <option value="today">All Time</option>
             </SelectField>
           </div>
-          {loading ? (
-            <Loader />
-          ) : (
-            <>
-              {tasks.map((task) => {
-                return (
-                  <TaskItem updateTask={editTask} key={task.id} {...task} />
-                );
-              })}
-            </>
-          )}
+          <Tabs justifyContent="flex-start">
+            <TabItem title="In Progress">
+              <TaskList type="inprogress" />
+            </TabItem>
+            <TabItem title="Completed">
+              <TaskList type="completed" />
+            </TabItem>
+          </Tabs>
         </Card>
       </Grid>
     </div>
