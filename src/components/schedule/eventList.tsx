@@ -66,28 +66,28 @@ export const formatDateAccurate = (d: string | number | Date) => {
   )}`;
 };
 
-const formatDate = (d: Date | string) => {
-  let date = new Date();
+// const formatDate = (d: Date | string) => {
+//   let date = new Date();
 
-  if (parseISO(`${d}`)) {
-    date = new Date(d);
-  }
+//   if (parseISO(`${d}`)) {
+//     date = new Date(d);
+//   }
 
-  if (!isValid(date)) {
-    return "";
-  }
+//   if (!isValid(date)) {
+//     return "";
+//   }
 
-  if (typeof +d === "number") {
-    date = new Date(+d);
-  }
+//   if (typeof +d === "number") {
+//     date = new Date(+d);
+//   }
 
-  date = new Date(d);
+//   date = new Date(d);
 
-  return `${format(date, "do")} of ${format(date, "MMM")}  at ${format(
-    date,
-    "kk:mm"
-  )}`;
-};
+//   return `${format(date, "do")} of ${format(date, "MMM")}  at ${format(
+//     date,
+//     "kk:mm"
+//   )}`;
+// };
 
 const determineDate = (type: DateType) => {
   const date = new Date();
@@ -167,7 +167,7 @@ const EventList = () => {
     fetchEvents(event);
   };
 
-  const handleSubmit = async (values: ICheckFree, resetForm: () => void) => {
+  const handleSubmit = async (values: ICheckFree) => {
     const event = {
       startDate: values.startDate,
       endDate: values.endDate,
@@ -185,13 +185,13 @@ const EventList = () => {
 
   const {
     values,
-    resetForm,
+    // resetForm,
     setFieldValue,
     handleSubmit: onSubmit,
   } = useValidation({
     initialValues,
     onSubmit: (values: ICheckFree) => {
-      handleSubmit(values, resetForm);
+      handleSubmit(values);
     },
   });
 
