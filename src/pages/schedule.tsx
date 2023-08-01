@@ -2,11 +2,16 @@ import { Button, Card, Heading, Text } from "@aws-amplify/ui-react";
 import { useGoogleLogin } from "@react-oauth/google";
 import CreateEvent from "src/components/schedule/createEvent";
 import EventList from "src/components/schedule/eventList";
+import { IUser } from "src/interfaces/user";
 import { connectGoogleAccount } from "src/services/auth";
+import { getUserInfo } from "src/services/user";
 import { useStore } from "src/store/store";
 
 const Schedule = () => {
-  const [user] = useStore((state) => [state.user.user]);
+  const [user, updateUser] = useStore((state) => [
+    state.user.user,
+    state.user.updateUser,
+  ]);
 
   const googleLogin = useGoogleLogin({
     flow: "auth-code",
@@ -15,6 +20,9 @@ const Schedule = () => {
         code: tokenResponse.code,
         userId: `${user?.id}`,
       });
+
+      const userInfo = await getUserInfo(user?.id as string);
+      updateUser(userInfo as IUser);
     },
     scope:
       "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events",
