@@ -2,7 +2,6 @@ import {
   Card,
   Grid,
   Heading,
-  SelectField,
   TabItem,
   Tabs,
   useTheme,

@@ -55,6 +55,8 @@ const TaskList = ({ type }: ITaskList) => {
     await refetch();
   };
 
+  console.log(tasks);
+
   const handleDelete = async (id: string) => {
     await removeTask(id);
     await refetch();
@@ -78,7 +80,7 @@ const TaskList = ({ type }: ITaskList) => {
         <Loader />
       ) : (
         <>
-          {tasks.length > 0 ? (
+          {(tasks || []).length > 0 ? (
             <TaskMap
               tasks={tasks}
               handleUpdate={handleUpdate}
