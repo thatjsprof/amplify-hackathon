@@ -119,10 +119,10 @@ const Tasks = () => {
             }}
           >
             <Heading level={5}>Your Tasks</Heading>
-            <SelectField label="Filters">
+            {/* <SelectField label="Filters">
               <option value="today">Today</option>
               <option value="today">All Time</option>
-            </SelectField>
+            </SelectField> */}
           </div>
           <Tabs justifyContent="flex-start">
             <TabItem title="In Progress">

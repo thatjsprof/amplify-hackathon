@@ -48,6 +48,9 @@ const Header = () => {
           }),
         },
         Button: {
+          style: {
+            color: "#fff",
+          },
           onClick: async () => {
             await logout();
             navigate("/");

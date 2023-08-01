@@ -16,7 +16,8 @@ export const addEvent = async ({ event, userId }: any) => {
   })) as GraphQLResult<any>;
 
   const result = JSON.parse(response.data.googleCalendarFunction);
-  return result?.body;
+  const bodyInfo = JSON.parse(result.body);
+  return bodyInfo;
 };
 
 export const getFreeTime = async ({ event, userId }: any) => {
