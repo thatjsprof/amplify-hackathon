@@ -1,6 +1,6 @@
 # AWS Amplify Hackathon July 2023
 
-[Video Demo](<../../../Desktop/Screen Recording 2023-08-01 at 2.13.36 AM.mov>)
+[Video Demo](src/assets/vids/video.mov)
 
 [Project Live here](https://main.dhnlob3crv62l.amplifyapp.com/) 👈
 ## Introduction
