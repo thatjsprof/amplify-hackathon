@@ -1,5 +1,8 @@
 # AWS Amplify Hackathon July 2023
 
+[Video Demo](<../../../Desktop/Screen Recording 2023-08-01 at 2.13.36 AM.mov>)
+
+[Project Live here](https://main.dhnlob3crv62l.amplifyapp.com/) 👈
 ## Introduction
 
 I recently received an email from Hashnode regarding the ongoing AWS Amplify Hackathon. At first, I thought it only pertained to the registration deadline of July 31, 2023, but my colleague David informed me otherwise after I shared the link with him. After a few minutes, he agreed to participate, and we began working on our project.
@@ -68,7 +71,6 @@ We want to express our gratitude to [AWS Amplify](https://aws.amazon.com/pm/ampl
 
 Their platform empowers developers and boosts productivity through high-quality tools and innovative technologies. If you're interested, you can watch a video demonstration of our application in the project's README. You can find the [Project Repo](https://github.com/thatjsprof/amplify-hackathon) by following the link below. 👇
 
-[Project Live](https://main.dhnlob3crv62l.amplifyapp.com/) 👈
 
 
 #AWSAmplify #AWSAmplifyHackathon
