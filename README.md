@@ -9,5 +9,5 @@
 
 ## Modifications
 
-- I removed the team-provider file because of sensitive info
-- I removed the aws exports file also
+- I removed the team-provider file because of sensitive info.
+- I removed the aws exports file also.
